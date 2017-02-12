@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Camp.Mvc.Swatter.Models;
@@ -53,13 +54,18 @@ Drives me nuts",
         // GET: Flies/Details/5
         public ActionResult Details(int id)
         {
-            var foundFly = _flies
-                .SingleOrDefault(fly => fly.Id == id);
+            var foundFly = GetFly(id);
             if (foundFly == null)
             {
                 return HttpNotFound("No fly to slap!");
             }
             return View(foundFly);
+        }
+
+        private static Fly GetFly(int id)
+        {
+            return _flies
+                .SingleOrDefault(fly => fly.Id == id);
         }
 
         // GET: Flies/Create
@@ -72,16 +78,20 @@ Drives me nuts",
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            try
+            var newFly = new Fly
             {
-                // TODO: Add insert logic here
+                Id = _flies.Select(fly => fly.Id).DefaultIfEmpty(0).Max() + 1,
+                Updated = DateTime.Now
+            };
 
-                return RedirectToAction("Index");
-            }
-            catch
+
+            if (TryUpdateModel(newFly))
             {
-                return View();
+                _flies.Add(newFly);
+                return RedirectToAction("Details", new {newFly.Id});
             }
+
+            return View();
         }
 
         // GET: Flies/Edit/5
