@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Camp.Mvc.Swatter.Models.Fly>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Index</title>
+</head>
+<body>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Issue
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Creator)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Updated)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Head)<br/>
+                <span style="font-size: small;">@Html.DisplayFor(modelItem => item.Body)</span>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Creator)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Updated)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+                @Html.ActionLink("Details", "Details", new {id = item.Id}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+            </td>
+        </tr>
+    }
+
+</table>
+</body>
+</html>

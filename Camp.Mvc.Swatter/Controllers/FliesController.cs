@@ -41,7 +41,7 @@ Could it be he doesn't like me?",
         // GET: Flies
         public ActionResult Index()
         {
-            return View();
+            return View(_flies);
         }
 
         // GET: Flies/Details/5
