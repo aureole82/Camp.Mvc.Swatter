@@ -117,7 +117,10 @@ Drives me nuts",
             }
 
             if (TryUpdateModel(foundFly))
+            {
+                foundFly.Updated = DateTime.Now;
                 return RedirectToAction("Details", new {foundFly.Id});
+            }
 
             foundFly.Updated = DateTime.Now;
             return View();
