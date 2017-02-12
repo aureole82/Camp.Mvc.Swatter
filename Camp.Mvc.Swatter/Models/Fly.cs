@@ -8,8 +8,8 @@ namespace Camp.Mvc.Swatter.Models
         public int Id { get; set; }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(130)]
+        [MinLength(3, ErrorMessage = "Give {0} at least {1} characters")]
+        [MaxLength(130, ErrorMessage = "{0} must not be longer than {1} characters")]
         //[StringLength(130, MinimumLength = 3)]
         [Display(Name = "Title")]
         public string Head { get; set; }
