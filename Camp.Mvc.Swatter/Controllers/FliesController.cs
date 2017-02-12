@@ -47,7 +47,7 @@ Drives me nuts",
         // GET: Flies
         public ActionResult Index()
         {
-            return View(_flies);
+            return View(_flies.OrderBy(fly => fly.Weight));
         }
 
         // GET: Flies/Details/5
