@@ -76,22 +76,17 @@ Drives me nuts",
 
         // POST: Flies/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create([Bind(Exclude = "Born,Updated")] Fly model)
         {
-            var newFly = new Fly
-            {
-                Id = _flies.Select(fly => fly.Id).DefaultIfEmpty(0).Max() + 1,
-                Updated = DateTime.Now
-            };
+            model.Id = _flies.Select(fly => fly.Id).DefaultIfEmpty(0).Max() + 1;
 
-
-            if (TryUpdateModel(newFly))
+            if (ModelState.IsValid)
             {
-                _flies.Add(newFly);
-                return RedirectToAction("Details", new {newFly.Id});
+                _flies.Add(model);
+                return RedirectToAction("Details", new {model.Id});
             }
 
-            return View();
+            return View(model);
         }
 
         // GET: Flies/Edit/5
@@ -116,13 +111,16 @@ Drives me nuts",
                 return HttpNotFound("No fly to slap!");
             }
 
-            if (TryUpdateModel(foundFly))
+            if (TryUpdateModel(
+                foundFly,
+                null,
+                new[] {nameof(Fly.Body), nameof(Fly.Head), nameof(Fly.Creator), nameof(Fly.Weight)}
+            ))
             {
                 foundFly.Updated = DateTime.Now;
                 return RedirectToAction("Details", new {foundFly.Id});
             }
 
-            foundFly.Updated = DateTime.Now;
             return View();
         }
 
