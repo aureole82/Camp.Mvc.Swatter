@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Camp.Mvc.Swatter.Models
 {
@@ -11,9 +12,11 @@ namespace Camp.Mvc.Swatter.Models
         [MinLength(3, ErrorMessage = "Give {0} at least {1} characters")]
         [MaxLength(130, ErrorMessage = "{0} must not be longer than {1} characters")]
         //[StringLength(130, MinimumLength = 3)]
+        [DontSwear]
         [Display(Name = "Title")]
         public string Head { get; set; }
 
+        [DontSwear]
         [Display(Name = "Description")]
         public string Body { get; set; }
 
@@ -41,5 +44,25 @@ namespace Camp.Mvc.Swatter.Models
         Normal,
         Light,
         Trivial
+    }
+
+    public class DontSwearAttribute : ValidationAttribute
+    {
+        private readonly string[] _forbidden = {"fuck", "bitch", "looser"};
+
+        public DontSwearAttribute() : base("Don't swear on {0}!")
+        {
+        }
+
+        protected override ValidationResult IsValid(object value, ValidationContext context)
+        {
+            var text = (value as string)?.ToLower();
+            if (string.IsNullOrWhiteSpace(text)
+                || !_forbidden.Any(swear => text.Contains(swear)))
+                return ValidationResult.Success;
+
+            var errorMessage = FormatErrorMessage(context.DisplayName);
+            return new ValidationResult(errorMessage);
+        }
     }
 }
