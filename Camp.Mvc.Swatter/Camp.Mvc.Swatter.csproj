@@ -68,6 +68,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Index.htm" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
