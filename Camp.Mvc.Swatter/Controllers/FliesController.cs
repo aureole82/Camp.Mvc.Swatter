@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Camp.Mvc.Swatter.Models;
 
@@ -9,7 +7,7 @@ namespace Camp.Mvc.Swatter.Controllers
 {
     public class FliesController : Controller
     {
-        private static List<Fly> _flies = new List<Fly>
+        private static readonly List<Fly> _flies = new List<Fly>
         {
             new Fly
             {
@@ -25,7 +23,7 @@ realized that I cannot fly. :-(",
                 Id = 2,
                 Head = "I'm tired",
                 Body = @"Every evening I'm getting tired. Need help!",
-                Creator = "zzz@honey.cup",
+                Creator = "zzz@honey.cup"
             },
             new Fly
             {
@@ -35,6 +33,14 @@ realized that I cannot fly. :-(",
 Could it be he doesn't like me?",
                 Creator = "shy@coffee.cup",
                 Weight = Weight.Heavy
+            },
+            new Fly
+            {
+                Id = 4,
+                Head = "I hear myself buzzing",
+                Body = @"Zzzzzzzzzzzzzzzzzzhhhh. Everywhere I fly. Cannot escape...
+Drives me nuts",
+                Weight = Weight.Trivial
             }
         };
 
@@ -48,8 +54,8 @@ Could it be he doesn't like me?",
         public ActionResult Details(int id)
         {
             var foundFly = _flies
-                .SingleOrDefault(fly => fly.Id==id);
-            if (foundFly==null)
+                .SingleOrDefault(fly => fly.Id == id);
+            if (foundFly == null)
             {
                 return HttpNotFound("No fly to slap!");
             }
