@@ -109,6 +109,7 @@
     <Content Include="Views\Flies\Index.cshtml" />
     <Content Include="Views\Flies\Details.cshtml" />
     <Content Include="Views\Flies\Create.cshtml" />
+    <Content Include="Views\Flies\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

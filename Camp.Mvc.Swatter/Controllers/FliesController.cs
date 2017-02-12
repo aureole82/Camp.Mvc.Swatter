@@ -97,23 +97,30 @@ Drives me nuts",
         // GET: Flies/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var foundFly = GetFly(id);
+            if (foundFly == null)
+            {
+                return HttpNotFound("No fly to slap!");
+            }
+
+            return View(foundFly);
         }
 
         // POST: Flies/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            try
+            var foundFly = GetFly(id);
+            if (foundFly == null)
             {
-                // TODO: Add update logic here
+                return HttpNotFound("No fly to slap!");
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            if (TryUpdateModel(foundFly))
+                return RedirectToAction("Details", new { foundFly.Id });
+
+            foundFly.Updated = DateTime.Now;
+            return View();
         }
 
         // GET: Flies/Delete/5
