@@ -117,7 +117,7 @@ Drives me nuts",
             }
 
             if (TryUpdateModel(foundFly))
-                return RedirectToAction("Details", new { foundFly.Id });
+                return RedirectToAction("Details", new {foundFly.Id});
 
             foundFly.Updated = DateTime.Now;
             return View();
@@ -126,23 +126,27 @@ Drives me nuts",
         // GET: Flies/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var foundFly = GetFly(id);
+            if (foundFly == null)
+            {
+                return HttpNotFound("No fly to slap!");
+            }
+
+            return View(foundFly);
         }
 
         // POST: Flies/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            try
+            var foundFly = GetFly(id);
+            if (foundFly == null)
             {
-                // TODO: Add delete logic here
+                return HttpNotFound("No fly to slap!");
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            _flies.Remove(foundFly);
+            return RedirectToAction("Index");
         }
     }
 }
