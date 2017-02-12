@@ -7,9 +7,63 @@
     <meta charset="utf-8"/>
 </head>
 <body>
-Hello, @Model.UserName<br/>
+Hello, @(Model.UserName)<br/>
 Let's snatch some flies!
 <hr/>
 Runs on @Model.MachineName @@ @Model.DateTime
+<hr/>
+Thousands ways of rendering your name:<br/>
+<p>
+    <h5>Output:</h5>
+    <code>@@Html.DisplayNameFor(model => model.Property): @@Html.DisplayFor(model => model.Property)</code><br/>
+    @Html.DisplayNameFor(model => model.UserName): @Html.DisplayFor(model => model.UserName)<br/>
+    @Html.DisplayNameFor(model => model.UserNameDirty): @Html.DisplayFor(model => model.UserNameDirty)<br/>
+    @Html.DisplayNameFor(model => model.DateTime): @Html.DisplayFor(model => model.DateTime)<br/>
+    @Html.DisplayNameFor(model => model.UserAge): @Html.DisplayFor(model => model.UserAge)<br/>
+</p>
+<p>
+    <h5>Inputs fields:</h5>
+    <code>@@Html.DisplayNameFor(model => model.Property): @@Html.EditorFor(model => model.Property)</code><br/>
+    @Html.DisplayNameFor(model => model.UserName): @Html.EditorFor(model => model.UserName)<br/>
+    @Html.DisplayNameFor(model => model.UserNameDirty): @Html.EditorFor(model => model.UserNameDirty)<br/>
+    @Html.DisplayNameFor(model => model.DateTime): @Html.EditorFor(model => model.DateTime)<br/>
+    @Html.DisplayNameFor(model => model.UserAge): @Html.EditorFor(model => model.UserAge)<br/>
+</p>
+<p>
+    <h5>Raw:</h5>
+    <code>@@Model.Property</code>: @Model.UserNameDirty<br/>
+    <code>@@Html.Raw(Model.Property)</code>: @Html.Raw(Model.UserNameDirty)
+</p>
+<p>
+    <h5>Calculations:</h5>
+    <code>@@Model.Property + 3</code>: @Model.UserAge + 3<br/>
+    <code>@@Model.Property+3 </code>: @Model.UserAge+3<br/>
+    <code>@@(Model.Property+3)</code>: @(Model.UserAge + 3)<br/>
+</p>
+<p>
+    <h5>Calculations:</h5>
+    <code>@@Model.Property + 3</code>: @Model.UserAge + 3<br/>
+    <code>@@Model.Property+3 </code>: @Model.UserAge+3<br/>
+    <code>@@(Model.Property+3)</code>: @(Model.UserAge + 3)<br/>
+</p>
+<p>
+    <h5>Specials:</h5>
+    Emails are ignored: my@Model.Property !<br/>
+    <code>my@@(Model.Property)</code>: my@(Model.UserAge)<br/>
+    Escape @@ sign, like <code>@@@@author</code>: @@author<br/>
+    Razor comments: <code>@@*my@@(Model.Property)*@@</code><br/>
+    Stop assume it's Razor:
+    <pre>
+    @@{
+        @@:Model.Property
+    }
+    </pre>
+    Results in:
+    <pre>
+    @{
+        @:Model.Property
+    }
+    </pre>
+</p>
 </body>
 </html>

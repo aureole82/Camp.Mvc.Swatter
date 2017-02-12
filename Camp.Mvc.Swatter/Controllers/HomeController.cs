@@ -13,6 +13,8 @@ namespace Camp.Mvc.Swatter.Controllers
             {
                 MachineName = Environment.MachineName,
                 UserName = Environment.UserName,
+                UserNameDirty = $"<b>{Environment.UserName}</b>",
+                UserAge = 23,
                 DateTime = DateTime.Now
             });
         }
