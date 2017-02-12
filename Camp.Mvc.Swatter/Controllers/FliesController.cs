@@ -47,7 +47,13 @@ Could it be he doesn't like me?",
         // GET: Flies/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var foundFly = _flies
+                .SingleOrDefault(fly => fly.Id==id);
+            if (foundFly==null)
+            {
+                return HttpNotFound("No fly to slap!");
+            }
+            return View(foundFly);
         }
 
         // GET: Flies/Create

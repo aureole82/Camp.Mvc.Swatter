@@ -1,0 +1,61 @@
+﻿@model Camp.Mvc.Swatter.Models.Fly
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>What's up?</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Head)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Head)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Body)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Body)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Creator)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Creator)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Born)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Born)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Updated)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Updated)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
