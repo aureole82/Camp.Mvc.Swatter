@@ -18,6 +18,7 @@ namespace Camp.Mvc.Swatter.Models
 
         [DontSwear]
         [Display(Name = "Description")]
+        [DataType(DataType.MultilineText)]
         public string Body { get; set; }
 
         [Required]
@@ -27,11 +28,13 @@ namespace Camp.Mvc.Swatter.Models
         public string Creator { get; set; }
 
         [Display(Name = "Created at")]
-        [DisplayFormat(DataFormatString = "{0:F}")]
+        //[DisplayFormat(DataFormatString = "{0:F}")]
+        [DataType(DataType.DateTime)]
         public DateTime Born { get; set; } = DateTime.Now;
 
         [Display(Name = "Updated at")]
-        [DisplayFormat(DataFormatString = "{0:F}")]
+        //[DisplayFormat(DataFormatString = "{0:F}")]
+        [DataType(DataType.DateTime)]
         public DateTime Updated { get; set; } = DateTime.Now;
 
         [Display(Name = "Severity")]
