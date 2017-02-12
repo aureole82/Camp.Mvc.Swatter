@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace Camp.Mvc.Swatter
 {
@@ -7,30 +9,11 @@ namespace Camp.Mvc.Swatter
     {
         protected void Application_Start(object sender, EventArgs e)
         {
-        }
-
-        protected void Session_Start(object sender, EventArgs e)
-        {
-        }
-
-        protected void Application_BeginRequest(object sender, EventArgs e)
-        {
-        }
-
-        protected void Application_AuthenticateRequest(object sender, EventArgs e)
-        {
-        }
-
-        protected void Application_Error(object sender, EventArgs e)
-        {
-        }
-
-        protected void Session_End(object sender, EventArgs e)
-        {
-        }
-
-        protected void Application_End(object sender, EventArgs e)
-        {
+            RouteTable.Routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new {controller = "Home", action = "Index", id = UrlParameter.Optional}
+            );
         }
     }
 }
