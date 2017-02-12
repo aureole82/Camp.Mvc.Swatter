@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Dynamic;
+﻿using System;
 using System.Web.Mvc;
+using Camp.Mvc.Swatter.Models;
 
 namespace Camp.Mvc.Swatter.Controllers
 {
@@ -9,9 +9,12 @@ namespace Camp.Mvc.Swatter.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            IDictionary<string, object> expando = new ExpandoObject();
-            expando.Add("UserName","Max");
-            return View((ExpandoObject)expando);
+            return View(new HomeModel
+            {
+                MachineName = Environment.MachineName,
+                UserName = Environment.UserName,
+                DateTime = DateTime.Now
+            });
         }
     }
 }
