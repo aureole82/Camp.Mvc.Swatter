@@ -2,10 +2,15 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width"/>
     <title>Swatter: @ViewBag.Title</title>
 </head>
 <body>
+<nav>
+    @Html.ActionLink("Home", "Index", "Home") | @Html.ActionLink("Known flies", "Index", "Flies")
+</nav>
+<hr/>
+<h2>@ViewBag.Title</h2>
 <div>
     @RenderBody()
 </div>
