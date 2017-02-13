@@ -7,7 +7,7 @@
 </head>
 <body>
 <nav>
-    @Html.ActionLink("Home", "Index", "Home") | @Html.ActionLink("Known flies", "Index", "Flies")
+    <a href="@Url.Action("Index", "Home")">&#x1f3e0; Home</a> | @Html.ActionLink("Known flies", "Index", "Flies")
 </nav>
 <hr/>
 <h2>@ViewBag.Title</h2>
