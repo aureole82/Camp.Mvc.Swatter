@@ -1,6 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Web.Mvc;
 using Camp.Mvc.Swatter.Models;
 
@@ -17,13 +17,9 @@ namespace Camp.Mvc.Swatter.Controllers
         }
 
         // GET: Pots/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Pot pot = _db.Pots.Find(id);
+            var pot = _db.Pots.Find(id);
             if (pot == null)
             {
                 return HttpNotFound();
@@ -55,13 +51,9 @@ namespace Camp.Mvc.Swatter.Controllers
         }
 
         // GET: Pots/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Pot pot = _db.Pots.Find(id);
+            var pot = _db.Pots.Find(id);
             if (pot == null)
             {
                 return HttpNotFound();
@@ -86,13 +78,9 @@ namespace Camp.Mvc.Swatter.Controllers
         }
 
         // GET: Pots/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Pot pot = _db.Pots.Find(id);
+            var pot = _db.Pots.Find(id);
             if (pot == null)
             {
                 return HttpNotFound();
@@ -101,11 +89,12 @@ namespace Camp.Mvc.Swatter.Controllers
         }
 
         // POST: Pots/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Pot pot = _db.Pots.Find(id);
+            var pot = _db.Pots.Find(id);
             _db.Pots.Remove(pot);
             _db.SaveChanges();
             return RedirectToAction("Index");
