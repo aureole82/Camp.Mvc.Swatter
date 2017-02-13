@@ -18,7 +18,7 @@ namespace Camp.Mvc.Swatter.Controllers
         }
 
         // GET: Pots/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int id, string query=null)
         {
             var pot = _db.Pots.Find(id);
             if (pot == null)
@@ -96,6 +96,11 @@ namespace Camp.Mvc.Swatter.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             var pot = _db.Pots.Find(id);
+            if (pot == null)
+            {
+                return HttpNotFound();
+            }
+
             _db.Pots.Remove(pot);
             _db.SaveChanges();
             return RedirectToAction("Index");

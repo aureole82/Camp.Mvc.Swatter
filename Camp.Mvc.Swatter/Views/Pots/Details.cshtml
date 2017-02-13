@@ -51,4 +51,26 @@
 
 <hr/>
 
+<div class="row">
+    <div class="col-md-2">
+        @Html.ActionLink("Create New", "Create", "Flies")
+    </div>
+    <div class="col-md-10 text-right" style="text-align: right;">
+
+        @using (Ajax.BeginForm(
+                    "IndexByProject",
+                    "Flies",
+                    null,
+                    new AjaxOptions { HttpMethod = "get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "fliesList" }
+                    , new { @class = "form-inline" }
+                    ))
+        {
+            <div class="form-group">
+                <label for="searchTerm">Search:</label>
+                <input type="search" class="form-control" id="searchTerm" name="query" placeholder="Input search term" value="@ViewBag.Query">
+            </div>
+            <button type="submit" class="btn btn-default">Search for flies</button>
+        }
+    </div>
+</div>
 @Html.Action("IndexByProject", "Flies", new {id = Model.Id})

@@ -1,20 +1,6 @@
 ﻿@model IEnumerable<Camp.Mvc.Swatter.Aggregates.Flies.FlyListAggregate>
 
-<div class="row">
-    <div class="col-md-2">
-        @Html.ActionLink("Create New", "Create")
-    </div>
-    <div class="col-md-10 text-right" style="text-align: right;">
-        <form method="get" class="form-inline">
-            <div class="form-group">
-                <label for="searchTerm">Search:</label>
-                <input type="search" class="form-control" id="searchTerm" name="query" placeholder="Input search term" value="@ViewBag.Query">
-            </div>
-            <button type="submit" class="btn btn-default">Search for flies</button>
-        </form>
-    </div>
-</div>
-<table class="table">
+<table class="table" id="fliesList">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Code)
@@ -41,7 +27,7 @@
     {
         <tr>
             <td>
-                <a href="@Url.Action("DetailsByCode", new {code = item.Code})">@Html.DisplayFor(modelItem => item.Code)</a>
+                <a href="@Url.Action("DetailsByCode","Flies", new {code = item.Code})">@Html.DisplayFor(modelItem => item.Code)</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Fly.Head)
@@ -59,9 +45,9 @@
                 @Html.DisplayFor(modelItem => item.Fly.Weight)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Fly.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Fly.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Fly.Id })
+                @Html.ActionLink("Edit", "Edit", "Flies", new {id = item.Fly.Id}, null) |
+                @Html.ActionLink("Details", "Details", "Flies", new {id = item.Fly.Id}, null) |
+                @Html.ActionLink("Delete", "Delete", "Flies", new {id = item.Fly.Id}, null)
             </td>
         </tr>
     }

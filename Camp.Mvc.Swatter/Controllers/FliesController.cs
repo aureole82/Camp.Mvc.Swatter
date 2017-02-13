@@ -15,13 +15,18 @@ namespace Camp.Mvc.Swatter.Controllers
         private readonly SwatterContext _db = MvcApplication.DbFactory.Create();
 
         // GET: Flies
-        public ActionResult Index()
+        public ActionResult Index(string query = null)
         {
-            return View();
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_FlyList", GetListAggregates(query: query));
+            }
+
+            return View(GetListAggregates());
         }
 
         // Prevent /Flies/IndexByProject/1 access by user.
-        [ChildActionOnly]
+        //[ChildActionOnly]
         public ActionResult IndexByProject(int? id = null, string query = null)
         {
             var fliesOfProject = GetListAggregates(id, query);
