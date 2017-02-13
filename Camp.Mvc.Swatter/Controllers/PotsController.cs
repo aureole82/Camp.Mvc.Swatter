@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using Camp.Mvc.Swatter.Helper;
@@ -7,6 +6,7 @@ using Camp.Mvc.Swatter.Models;
 
 namespace Camp.Mvc.Swatter.Controllers
 {
+    [RedirectToIndexOnMissingArgument]
     public class PotsController : Controller
     {
         private readonly SwatterContext _db = new SwatterContext();
@@ -18,7 +18,6 @@ namespace Camp.Mvc.Swatter.Controllers
         }
 
         // GET: Pots/Details/5
-        [RedirectToIndexOnMissingArgument]
         public ActionResult Details(int id)
         {
             var pot = _db.Pots.Find(id);

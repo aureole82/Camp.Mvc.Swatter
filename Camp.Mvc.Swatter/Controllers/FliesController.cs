@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Web.Mvc;
+using Camp.Mvc.Swatter.Helper;
 using Camp.Mvc.Swatter.Models;
 
 namespace Camp.Mvc.Swatter.Controllers
 {
+    [RedirectToIndexOnMissingArgument]
     public class FliesController : Controller
     {
         private readonly SwatterContext _db = new SwatterContext();

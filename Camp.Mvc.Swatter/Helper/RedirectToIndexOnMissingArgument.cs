@@ -7,21 +7,25 @@ namespace Camp.Mvc.Swatter.Helper
 {
     public class RedirectToIndexOnMissingArgumentAttribute : FilterAttribute, IExceptionFilter
     {
+        private const string RedirectViewName = "Index";
+
         public void OnException(ExceptionContext filterContext)
         {
             var argumentException = filterContext.Exception as ArgumentException;
-            if (argumentException == null || argumentException.ParamName != "parameters") return;
+            if (argumentException == null
+                || argumentException.ParamName != "parameters"
+                || (filterContext.RouteData.Values["action"] as string) == RedirectViewName) return;
 
-            var indexAction =filterContext.Controller.GetType().GetMethods()
-                .SingleOrDefault(info => info.Name == "Index");
+            var indexAction = filterContext.Controller.GetType().GetMethods()
+                .SingleOrDefault(info => info.Name == RedirectViewName);
 
             var actionResult = indexAction?.Invoke(filterContext.Controller, new object[0]) as ActionResult;
             var viewResult = actionResult as ViewResult;
             if (viewResult != null)
             {
-                viewResult.ViewName = "Index";
+                viewResult.ViewName = RedirectViewName;
                 viewResult.ViewData["Error"] =
-                    "Your request was wrong. Forget to enter something? The id? Please select the correct item...";
+                    "Your request was wrong. Forget to enter something? The id? Please fix it or select the correct item below...";
             }
             else
             {
@@ -29,7 +33,7 @@ namespace Camp.Mvc.Swatter.Helper
                     new RouteValueDictionary
                     {
                         {"controller", filterContext.RouteData.Values["controller"]},
-                        {"action", "Index"}
+                        {"action", RedirectViewName}
                     }
                 );
             }

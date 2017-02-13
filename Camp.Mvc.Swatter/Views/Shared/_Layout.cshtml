@@ -28,6 +28,19 @@
         </div>
     </div>
     <div class="container body-content">
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="panel panel-danger" style="margin-top: 5px;">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Something went wrong!</h3>
+                </div>
+                <div class="panel-body">
+                    @ViewBag.Error
+                </div>
+            </div>
+        }
+
         @RenderBody()
         <hr />
         <footer>
