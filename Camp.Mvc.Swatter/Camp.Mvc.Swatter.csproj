@@ -143,6 +143,7 @@
     <Compile Include="Helper\RedirectToIndexOnMissingArgument.cs" />
     <Compile Include="Models\Fly.cs" />
     <Compile Include="Models\Pot.cs" />
+    <Compile Include="Models\SwatterContextFactory.cs" />
     <Compile Include="Models\SwatterContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

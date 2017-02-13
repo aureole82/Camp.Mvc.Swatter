@@ -10,7 +10,7 @@ namespace Camp.Mvc.Swatter.Controllers
     [RedirectToIndexOnMissingArgument]
     public class FliesController : Controller
     {
-        private readonly SwatterContext _db = new SwatterContext();
+        private readonly SwatterContext _db = MvcApplication.DbFactory.Create();
 
         // GET: Flies
         public ActionResult Index()

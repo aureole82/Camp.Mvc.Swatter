@@ -9,7 +9,7 @@ namespace Camp.Mvc.Swatter.Controllers
     [RedirectToIndexOnMissingArgument]
     public class PotsController : Controller
     {
-        private readonly SwatterContext _db = new SwatterContext();
+        private readonly SwatterContext _db = MvcApplication.DbFactory.Create();
 
         // GET: Pots
         public ActionResult Index()

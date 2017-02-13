@@ -13,11 +13,6 @@ namespace Camp.Mvc.Swatter.Models
 
         public SwatterContext() : base("name=SwatterContext")
         {
-            // Hack! Don't do this:
-            if (!Database.CompatibleWithModel(false))
-            {
-                new DropCreateDatabaseIfModelChanges<SwatterContext>().InitializeDatabase(this);
-            }
         }
 
         public DbSet<Pot> Pots { get; set; }
@@ -30,6 +25,7 @@ namespace Camp.Mvc.Swatter.Models
                 .HasMany(pot => pot.Flies)
                 .WithRequired()
                 .HasForeignKey(fly => fly.PotId)
+                // Not neccessary. Entity Framework creates ON DELETE CASCADE constraint implicitly if appropriate.
                 //.WillCascadeOnDelete(true)
                 ;
 
