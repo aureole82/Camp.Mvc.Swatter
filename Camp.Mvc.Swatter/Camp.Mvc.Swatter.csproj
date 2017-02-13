@@ -134,6 +134,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\FliesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PotsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -193,6 +194,11 @@
     <Content Include="Views\Pots\Details.cshtml" />
     <Content Include="Views\Pots\Edit.cshtml" />
     <Content Include="Views\Pots\Index.cshtml" />
+    <Content Include="Views\Flies\Create.cshtml" />
+    <Content Include="Views\Flies\Delete.cshtml" />
+    <Content Include="Views\Flies\Details.cshtml" />
+    <Content Include="Views\Flies\Edit.cshtml" />
+    <Content Include="Views\Flies\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

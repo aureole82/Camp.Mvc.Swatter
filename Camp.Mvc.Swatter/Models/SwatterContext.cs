@@ -16,5 +16,7 @@ namespace Camp.Mvc.Swatter.Models
         }
 
         public DbSet<Pot> Pots { get; set; }
+
+        public DbSet<Fly> Flies { get; set; }
     }
 }
