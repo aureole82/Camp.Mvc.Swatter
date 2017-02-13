@@ -1,12 +1,6 @@
 ﻿@model Camp.Mvc.Swatter.Models.Fly
-<!DOCTYPE html>
+@{ ViewBag.Title = "Details";}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title: Details</title>
-</head>
-<body>
     <div>
         <h4>What's up?</h4>
         <hr />
@@ -65,5 +59,3 @@
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
-</body>
-</html>

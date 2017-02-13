@@ -1,12 +1,6 @@
 ﻿@model Camp.Mvc.Swatter.Models.Fly
-<!DOCTYPE html>
+@{ ViewBag.Title = "Edit";}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title: Edit</title>
-</head>
-<body>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -60,5 +54,3 @@
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
-</body>
-</html>
