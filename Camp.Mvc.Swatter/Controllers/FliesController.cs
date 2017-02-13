@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -34,7 +35,7 @@ namespace Camp.Mvc.Swatter.Controllers
         // GET: Flies/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new Fly());
         }
 
         // POST: Flies/Create
@@ -42,7 +43,7 @@ namespace Camp.Mvc.Swatter.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Head,Body,Creator,Born,Updated,Weight")] Fly fly)
+        public ActionResult Create([Bind(Include = "Id,Head,Body,Creator,Weight")] Fly fly)
         {
             if (ModelState.IsValid)
             {
@@ -74,11 +75,13 @@ namespace Camp.Mvc.Swatter.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Head,Body,Creator,Born,Updated,Weight")] Fly fly)
+        public ActionResult Edit([Bind(Include = "Id,Head,Body,Creator,Weight")] Fly fly)
         {
             if (ModelState.IsValid)
             {
+                fly.Updated = DateTime.Now;
                 _db.Entry(fly).State = EntityState.Modified;
+                _db.Entry(fly).Property(f => f.Born).IsModified = false;
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
