@@ -1,4 +1,5 @@
-﻿@model Camp.Mvc.Swatter.Models.Fly
+﻿@using Camp.Mvc.Swatter.Models
+@model Camp.Mvc.Swatter.Models.Fly
 
 @{
     ViewBag.Title = "Create";
@@ -15,6 +16,15 @@
         <h4>Fly</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PotId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.PotId, new SelectList(ViewBag.Pots, nameof(Pot.Id), nameof(Pot.Name)), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PotId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Head, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

@@ -32,6 +32,7 @@ namespace Camp.Mvc.Swatter.Controllers
         // GET: Flies/Create
         public ActionResult Create()
         {
+            ViewBag.Pots = _db.Pots;
             return View(new Fly());
         }
 
@@ -40,7 +41,7 @@ namespace Camp.Mvc.Swatter.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Head,Body,Creator,Weight")] Fly fly)
+        public ActionResult Create([Bind(Include = "Id,PotId,Head,Body,Creator,Weight")] Fly fly)
         {
             if (ModelState.IsValid)
             {
@@ -74,6 +75,7 @@ namespace Camp.Mvc.Swatter.Controllers
             {
                 fly.Updated = DateTime.Now;
                 _db.Entry(fly).State = EntityState.Modified;
+                _db.Entry(fly).Property(f => f.PotId).IsModified = false;
                 _db.Entry(fly).Property(f => f.Born).IsModified = false;
                 _db.SaveChanges();
                 return RedirectToAction("Index");
