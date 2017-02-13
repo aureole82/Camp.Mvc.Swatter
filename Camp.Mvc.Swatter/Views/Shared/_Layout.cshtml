@@ -2,17 +2,22 @@
 
 <html>
 <head>
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width"/>
     <title>Swatter: @ViewBag.Title</title>
+    <link rel="shortcut icon" type="image/ico" href="~/favicon.ico" />
+    <link href="~/Styles/Site.css" rel="stylesheet" />
 </head>
 <body>
 <nav>
     <a href="@Url.Action("Index", "Home")">&#x1f3e0; Home</a> | @Html.ActionLink("Known flies", "Index", "Flies")
 </nav>
-<hr/>
 <h2>@ViewBag.Title</h2>
 <div>
     @RenderBody()
 </div>
+<footer>
+    Runs on @Environment.MachineName @@ @DateTime.Now
+</footer>
 </body>
 </html>
