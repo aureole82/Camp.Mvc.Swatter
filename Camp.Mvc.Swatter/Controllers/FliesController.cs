@@ -22,6 +22,8 @@ namespace Camp.Mvc.Swatter.Controllers
             return View(flies);
         }
 
+        // Prevent /Flies/IndexByProject/1 access by user.
+        [ChildActionOnly]
         public ActionResult IndexByProject(int id)
         {
             var fliesOfProject = GetListAggregates(id);
