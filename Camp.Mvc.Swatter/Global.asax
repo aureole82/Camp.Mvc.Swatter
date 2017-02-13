@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Camp.Mvc.Swatter.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Camp.Mvc.Swatter.MvcApplication" Language="C#" %>

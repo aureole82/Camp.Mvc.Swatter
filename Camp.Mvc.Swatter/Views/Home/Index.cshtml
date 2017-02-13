@@ -1,73 +1,31 @@
-﻿@model Camp.Mvc.Swatter.Models.HomeModel
-@{ ViewBag.Title = "Home";}
-
-@section css
-{
-    <style type="text/css">
-        body > div {
-            text-align: center;
-        }
-        h5 {
-            border-bottom: dashed black 1px;
-        }
-    </style>
+﻿@{
+    ViewBag.Title = "Home Page";
 }
 
-Hello, @(Model.UserName)<br/>
-Let's snatch some flies!
-<hr/>
-Runs on @Model.MachineName @@ @Model.DateTime
-<hr/>
-Thousands ways of rendering your name:<br/>
-<p>
-    <h5>Output:</h5>
-    <code>@@Html.DisplayNameFor(model => model.Property): @@Html.DisplayFor(model => model.Property)</code><br/>
-    @Html.DisplayNameFor(model => model.UserName): @Html.DisplayFor(model => model.UserName)<br/>
-    @Html.DisplayNameFor(model => model.UserNameDirty): @Html.DisplayFor(model => model.UserNameDirty)<br/>
-    @Html.DisplayNameFor(model => model.DateTime): @Html.DisplayFor(model => model.DateTime)<br/>
-    @Html.DisplayNameFor(model => model.UserAge): @Html.DisplayFor(model => model.UserAge)<br/>
-</p>
-<p>
-    <h5>Inputs fields:</h5>
-    <code>@@Html.DisplayNameFor(model => model.Property): @@Html.EditorFor(model => model.Property)</code><br/>
-    @Html.DisplayNameFor(model => model.UserName): @Html.EditorFor(model => model.UserName)<br/>
-    @Html.DisplayNameFor(model => model.UserNameDirty): @Html.EditorFor(model => model.UserNameDirty)<br/>
-    @Html.DisplayNameFor(model => model.DateTime): @Html.EditorFor(model => model.DateTime)<br/>
-    @Html.DisplayNameFor(model => model.UserAge): @Html.EditorFor(model => model.UserAge)<br/>
-</p>
-<p>
-    <h5>Raw:</h5>
-    <code>@@Model.Property</code>: @Model.UserNameDirty<br/>
-    <code>@@Html.Raw(Model.Property)</code>: @Html.Raw(Model.UserNameDirty)
-</p>
-<p>
-    <h5>Calculations:</h5>
-    <code>@@Model.Property + 3</code>: @Model.UserAge + 3<br/>
-    <code>@@Model.Property+3 </code>: @Model.UserAge+3<br/>
-    <code>@@(Model.Property+3)</code>: @(Model.UserAge + 3)<br/>
-</p>
-<p>
-    <h5>Calculations:</h5>
-    <code>@@Model.Property + 3</code>: @Model.UserAge + 3<br/>
-    <code>@@Model.Property+3 </code>: @Model.UserAge+3<br/>
-    <code>@@(Model.Property+3)</code>: @(Model.UserAge + 3)<br/>
-</p>
-<p>
-    <h5>Specials:</h5>
-    Emails are ignored: my@Model.Property !<br/>
-    <code>my@@(Model.Property)</code>: my@(Model.UserAge)<br/>
-    Escape @@ sign, like <code>@@@@author</code>: @@author<br/>
-    Razor comments: <code>@@*my@@(Model.Property)*@@</code><br/>
-    Stop assume it's Razor:
-    <pre>
-    @@{
-        @@:Model.Property
-    }
-    </pre>
-    Results in:
-    <pre>
-    @{
-        @:Model.Property
-    }
-    </pre>
-</p>
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>
+            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+            enables a clean separation of concerns and gives you full control over markup
+            for enjoyable, agile development.
+        </p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Get more libraries</h2>
+        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+</div>
