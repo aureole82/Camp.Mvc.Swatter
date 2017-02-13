@@ -1,6 +1,18 @@
 ﻿@model Camp.Mvc.Swatter.Models.HomeModel
 @{ ViewBag.Title = "Home";}
 
+@section css
+{
+    <style type="text/css">
+        body > div {
+            text-align: center;
+        }
+        h5 {
+            border-bottom: dashed black 1px;
+        }
+    </style>
+}
+
 Hello, @(Model.UserName)<br/>
 Let's snatch some flies!
 <hr/>
