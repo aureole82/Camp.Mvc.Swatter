@@ -13,10 +13,27 @@ namespace Camp.Mvc.Swatter.Models
 
         public SwatterContext() : base("name=SwatterContext")
         {
+            // Hack! Don't do this:
+            if (!Database.CompatibleWithModel(false))
+            {
+                new DropCreateDatabaseIfModelChanges<SwatterContext>().InitializeDatabase(this);
+            }
         }
 
         public DbSet<Pot> Pots { get; set; }
 
         public DbSet<Fly> Flies { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Pot>()
+                .HasMany(pot => pot.Flies)
+                .WithRequired()
+                .HasForeignKey(fly => fly.PotId)
+                //.WillCascadeOnDelete(true)
+                ;
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

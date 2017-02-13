@@ -39,6 +39,9 @@ namespace Camp.Mvc.Swatter.Models
 
         [Display(Name = "Severity")]
         public Weight Weight { get; set; } = Weight.Normal;
+
+        /// <summary> References <see cref="Pot.Id" /> implicitlys. </summary>
+        public int PotId { get; set; }
     }
 
     public enum Weight
