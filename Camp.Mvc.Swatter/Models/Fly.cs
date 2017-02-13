@@ -28,13 +28,13 @@ namespace Camp.Mvc.Swatter.Models
         public string Creator { get; set; }
 
         [Display(Name = "Created at")]
-        //[DisplayFormat(DataFormatString = "{0:F}")]
-        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         public DateTime Born { get; set; } = DateTime.Now;
 
         [Display(Name = "Updated at")]
-        //[DisplayFormat(DataFormatString = "{0:F}")]
-        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         public DateTime Updated { get; set; } = DateTime.Now;
 
         [Display(Name = "Severity")]

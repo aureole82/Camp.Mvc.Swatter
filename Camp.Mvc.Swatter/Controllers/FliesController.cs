@@ -34,7 +34,7 @@ namespace Camp.Mvc.Swatter.Controllers
         // GET: Flies/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new Fly());
         }
 
         // POST: Flies/Create
