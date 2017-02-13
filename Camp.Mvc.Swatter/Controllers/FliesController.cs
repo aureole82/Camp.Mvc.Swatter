@@ -5,7 +5,6 @@ using System.Web.Mvc;
 using Camp.Mvc.Swatter.Aggregates;
 using Camp.Mvc.Swatter.Helper;
 using Camp.Mvc.Swatter.Models;
-using Microsoft.Ajax.Utilities;
 
 namespace Camp.Mvc.Swatter.Controllers
 {
@@ -23,18 +22,7 @@ namespace Camp.Mvc.Swatter.Controllers
         // GET: Flies/Details/5
         public ActionResult Details(int id)
         {
-            var aggregate = (
-                    from fly in _db.Flies
-                    join pot in _db.Pots on fly.PotId equals pot.Id
-                    where fly.Id == id
-                    select new FlyDetailsAggregate
-                    {
-                        Fly = fly,
-                        PotCode = pot.Abbreviation,
-                        PotName = pot.Name
-                    }
-                )
-                .SingleOrDefault();
+            var aggregate = GetDetailsAggregate(id);
 
             if (aggregate == null)
             {
@@ -101,12 +89,12 @@ namespace Camp.Mvc.Swatter.Controllers
         // GET: Flies/Delete/5
         public ActionResult Delete(int id)
         {
-            var fly = _db.Flies.Find(id);
-            if (fly == null)
+            var aggregate = GetDetailsAggregate(id);
+            if (aggregate == null)
             {
                 return HttpNotFound();
             }
-            return View(fly);
+            return View(aggregate);
         }
 
         // POST: Flies/Delete/5
@@ -119,6 +107,23 @@ namespace Camp.Mvc.Swatter.Controllers
             _db.Flies.Remove(fly);
             _db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        private FlyDetailsAggregate GetDetailsAggregate(int flyId)
+        {
+            var aggregate = (
+                    from fly in _db.Flies
+                    join pot in _db.Pots on fly.PotId equals pot.Id
+                    where fly.Id == flyId
+                    select new FlyDetailsAggregate
+                    {
+                        Fly = fly,
+                        PotCode = pot.Abbreviation,
+                        PotName = pot.Name
+                    }
+                )
+                .SingleOrDefault();
+            return aggregate;
         }
 
         protected override void Dispose(bool disposing)

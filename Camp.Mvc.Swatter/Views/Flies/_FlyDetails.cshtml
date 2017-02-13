@@ -1,0 +1,63 @@
+﻿@model Camp.Mvc.Swatter.Aggregates.FlyDetailsAggregate
+
+<h4>Fly</h4>
+<hr />
+<dl class="dl-horizontal">
+
+    <dt>
+        @Html.DisplayNameFor(model => model.PotCode)
+    </dt>
+
+    <dd>
+        <a href="@Url.Action("Details", "Pots", new {id = Model.Fly.PotId})">@Html.DisplayFor(model => model.PotCode)</a> <small>(@Html.DisplayFor(model => model.PotName))</small>
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Fly.Head)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Fly.Head)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Fly.Body)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Fly.Body)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Fly.Creator)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Fly.Creator)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Fly.Born)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Fly.Born)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Fly.Updated)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Fly.Updated)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Fly.Weight)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Fly.Weight)
+    </dd>
+
+</dl>
