@@ -35,7 +35,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Code)
+            <a href="@Url.Action("DetailsByCode", new {code = item.Code})">@Html.DisplayFor(modelItem => item.Code)</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Fly.Head)

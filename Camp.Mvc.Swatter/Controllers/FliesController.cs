@@ -45,6 +45,26 @@ namespace Camp.Mvc.Swatter.Controllers
             return View(aggregate);
         }
 
+        // GET: Flies/POT-5
+        public ActionResult DetailsByCode(string code)
+        {
+            code = code?.Split('-').Skip(1).FirstOrDefault();
+            int flyId;
+            if (!int.TryParse(code, out flyId))
+            {
+                return HttpNotFound();
+            }
+
+            var aggregate = GetDetailsAggregate(flyId);
+
+            if (aggregate == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View("Details", aggregate);
+        }
+
         // GET: Flies/Create
         public ActionResult Create()
         {

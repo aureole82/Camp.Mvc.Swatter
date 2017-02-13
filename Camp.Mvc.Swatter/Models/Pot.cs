@@ -8,6 +8,7 @@ namespace Camp.Mvc.Swatter.Models
         public int Id { get; set; }
 
         [Required]
+        [RegularExpression(@"\w+")]
         [Display(Name = "Code")]
         public string Abbreviation { get; set; }
 

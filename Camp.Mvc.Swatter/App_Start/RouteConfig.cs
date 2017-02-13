@@ -10,6 +10,13 @@ namespace Camp.Mvc.Swatter
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "FliesCodeRoute",
+                "Flies/{code}",
+                new { controller = "Flies", action = "DetailsByCode" },
+                new { code = @"\w+-\d+" }
+            );
+
+            routes.MapRoute(
                 "Default",
                 "{controller}/{action}/{id}",
                 new {controller = "Home", action = "Index", id = UrlParameter.Optional}
