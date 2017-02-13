@@ -17,14 +17,17 @@ namespace Camp.Mvc.Swatter.Controllers
         public ActionResult Index()
         {
             var flies = (
-                from fly in _db.Flies
-                join pot in _db.Pots on fly.PotId equals pot.Id
-                select new FlyListAggregate
+                    from fly in _db.Flies
+                    join pot in _db.Pots on fly.PotId equals pot.Id
+                    select new {fly, pot.Abbreviation}
+                )
+                .ToList()
+                .Select(arg => new FlyListAggregate
                 {
-                    Fly = fly,
-                    PotCode = pot.Abbreviation
-                }
-            ).ToList();
+                    Fly = arg.fly,
+                    PotCode = arg.Abbreviation,
+                    DaysAlive = Math.Ceiling((arg.fly.Updated - arg.fly.Born).TotalDays)
+                });
 
             return View(flies);
         }
