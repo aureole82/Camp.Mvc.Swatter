@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -16,9 +17,24 @@ namespace Camp.Mvc.Swatter.Controllers
         // GET: Flies
         public ActionResult Index()
         {
+            var flies = GetListAggregates();
+
+            return View(flies);
+        }
+
+        public ActionResult IndexByProject(int id)
+        {
+            var fliesOfProject = GetListAggregates(id);
+
+            return PartialView("_FlyList", fliesOfProject);
+        }
+
+        private IEnumerable<FlyListAggregate> GetListAggregates(int? id=null)
+        {
             var flies = (
                     from fly in _db.Flies
                     join pot in _db.Pots on fly.PotId equals pot.Id
+                    where !id.HasValue || fly.PotId == id
                     select new {fly, pot.Abbreviation}
                 )
                 .ToList()
@@ -28,8 +44,7 @@ namespace Camp.Mvc.Swatter.Controllers
                     PotCode = arg.Abbreviation,
                     DaysAlive = Math.Ceiling((arg.fly.Updated - arg.fly.Born).TotalDays)
                 });
-
-            return View(flies);
+            return flies;
         }
 
         // GET: Flies/Details/5

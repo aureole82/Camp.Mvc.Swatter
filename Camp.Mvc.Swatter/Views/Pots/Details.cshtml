@@ -48,3 +48,7 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<hr/>
+
+@Html.Action("IndexByProject", "Flies", new {id=Model.Id} )
