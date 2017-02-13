@@ -100,6 +100,7 @@ Could it be he doesn't like me?",
                             Head = "I hear myself buzzing",
                             Body = @"Zzzzzzzzzzzzzzzzzzhhhh. Everywhere I fly. Cannot escape...
 Drives me nuts",
+                            Creator = "wacky@honey.pot",
                             Weight = Weight.Trivial
                         }
                     }
