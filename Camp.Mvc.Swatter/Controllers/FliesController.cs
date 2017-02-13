@@ -26,6 +26,7 @@ namespace Camp.Mvc.Swatter.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.PotCode = _db.Pots.Find(fly.PotId)?.Abbreviation;
             return View(fly);
         }
 
