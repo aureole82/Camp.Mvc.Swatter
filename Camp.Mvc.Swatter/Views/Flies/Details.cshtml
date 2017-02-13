@@ -1,4 +1,4 @@
-﻿@model Camp.Mvc.Swatter.Models.Fly
+﻿@model Camp.Mvc.Swatter.Aggregates.FlyDetailsAggregate
 
 @{
     ViewBag.Title = "Details";
@@ -8,67 +8,68 @@
 
 <div>
     <h4>Fly</h4>
-    <hr />
+    <hr/>
     <dl class="dl-horizontal">
+
         <dt>
-            Pot
+            @Html.DisplayNameFor(model => model.PotCode)
         </dt>
 
         <dd>
-            @ViewBag.PotCode
+            <a href="@Url.Action("Details", "Pots", new {id = Model.Fly.PotId})">@Html.DisplayFor(model => model.PotCode)</a> <small>(@Html.DisplayFor(model => model.PotName))</small>
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Head)
+            @Html.DisplayNameFor(model => model.Fly.Head)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Head)
+            @Html.DisplayFor(model => model.Fly.Head)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Body)
+            @Html.DisplayNameFor(model => model.Fly.Body)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Body)
+            @Html.DisplayFor(model => model.Fly.Body)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Creator)
+            @Html.DisplayNameFor(model => model.Fly.Creator)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Creator)
+            @Html.DisplayFor(model => model.Fly.Creator)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Born)
+            @Html.DisplayNameFor(model => model.Fly.Born)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Born)
+            @Html.DisplayFor(model => model.Fly.Born)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Updated)
+            @Html.DisplayNameFor(model => model.Fly.Updated)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Updated)
+            @Html.DisplayFor(model => model.Fly.Updated)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Weight)
+            @Html.DisplayNameFor(model => model.Fly.Weight)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Weight)
+            @Html.DisplayFor(model => model.Fly.Weight)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new {id = Model.Fly.Id}) |
     @Html.ActionLink("Back to List", "Index")
 </p>
