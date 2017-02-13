@@ -140,6 +140,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\RedirectToIndexOnMissingArgument.cs" />
     <Compile Include="Models\Fly.cs" />
     <Compile Include="Models\Pot.cs" />
     <Compile Include="Models\SwatterContext.cs" />
@@ -199,6 +200,7 @@
     <Content Include="Views\Flies\Details.cshtml" />
     <Content Include="Views\Flies\Edit.cshtml" />
     <Content Include="Views\Flies\Index.cshtml" />
+    <Content Include="Views\Shared\MissingParameter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
