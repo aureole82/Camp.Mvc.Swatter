@@ -131,7 +131,8 @@
     <Content Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aggregates\FlyDetailsAggregate.cs" />
+    <Compile Include="Aggregates\Flies\FlyListAggregate.cs" />
+    <Compile Include="Aggregates\Flies\FlyDetailsAggregate.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />

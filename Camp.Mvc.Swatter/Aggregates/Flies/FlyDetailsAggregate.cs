@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Camp.Mvc.Swatter.Models;
 
-namespace Camp.Mvc.Swatter.Aggregates
+namespace Camp.Mvc.Swatter.Aggregates.Flies
 {
     public class FlyDetailsAggregate
     {

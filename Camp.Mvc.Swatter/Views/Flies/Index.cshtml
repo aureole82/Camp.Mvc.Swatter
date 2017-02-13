@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Camp.Mvc.Swatter.Models.Fly>
+﻿@model IEnumerable<Camp.Mvc.Swatter.Aggregates.Flies.FlyListAggregate>
 
 @{
     ViewBag.Title = "Index";
@@ -12,22 +12,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Head)
+            @Html.DisplayNameFor(model => model.Code)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Body)
+            @Html.DisplayNameFor(model => model.Fly.Head)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Creator)
+            @Html.DisplayNameFor(model => model.Fly.Creator)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Born)
+            @Html.DisplayNameFor(model => model.Fly.Updated)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Updated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Weight)
+            @Html.DisplayNameFor(model => model.Fly.Weight)
         </th>
         <th></th>
     </tr>
@@ -35,27 +32,24 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Head)
+            @Html.DisplayFor(modelItem => item.Code)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Body)
+            @Html.DisplayFor(modelItem => item.Fly.Head)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Creator)
+            @Html.DisplayFor(modelItem => item.Fly.Creator)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Born)
+            @Html.DisplayFor(modelItem => item.Fly.Updated)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Updated)
+            @Html.DisplayFor(modelItem => item.Fly.Weight)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Weight)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Fly.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Fly.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Fly.Id })
         </td>
     </tr>
 }

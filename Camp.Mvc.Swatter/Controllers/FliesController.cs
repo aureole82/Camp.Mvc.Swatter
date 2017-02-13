@@ -2,7 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
-using Camp.Mvc.Swatter.Aggregates;
+using Camp.Mvc.Swatter.Aggregates.Flies;
 using Camp.Mvc.Swatter.Helper;
 using Camp.Mvc.Swatter.Models;
 
@@ -16,7 +16,17 @@ namespace Camp.Mvc.Swatter.Controllers
         // GET: Flies
         public ActionResult Index()
         {
-            return View(_db.Flies.ToList());
+            var flies = (
+                from fly in _db.Flies
+                join pot in _db.Pots on fly.PotId equals pot.Id
+                select new FlyListAggregate
+                {
+                    Fly = fly,
+                    PotCode = pot.Abbreviation
+                }
+            ).ToList();
+
+            return View(flies);
         }
 
         // GET: Flies/Details/5
