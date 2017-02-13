@@ -11,28 +11,60 @@ namespace Camp.Mvc.Swatter.Models
         public SwatterContext Create()
         {
             Debug.WriteLine($"{nameof(SwatterContextFactory)}.{nameof(Create)}()...");
+            var context = new SwatterContext
+            {
+                Database = {Log = s => Debug.Write(s)}
+            };
 
-            var swatterContext = new SwatterContext();
             if (_hasModelChecked)
             {
-                Debug.WriteLine($"  - Schema ok!");
-                return swatterContext;
+                Debug.WriteLine("  - Schema already validated!");
+                return new SwatterContext();
             }
 
-            Debug.WriteLine($"  - Checking Database...");
-            if (!swatterContext.Database.CompatibleWithModel(false))
+            Debug.WriteLine("  - Checking Database...");
+            if (!context.Database.Exists() || !context.Database.CompatibleWithModel(false))
             {
-                Debug.WriteLine($"  - Schema not ok, recreating database...");
-                new DropCreateDatabaseIfModelChanges<SwatterContext>().InitializeDatabase(swatterContext);
-                Debug.WriteLine($"  - Recreation done.");
+                Debug.WriteLine("  - Database doesn't exist or invalid schema, recreating database...");
+
+                new RecreateSwatterDatabaseInitializer().InitializeDatabase(context);
+                Debug.WriteLine("  - Seeding done.");
             }
             else
             {
-                Debug.WriteLine($"  - Schema ok!");
+                Debug.WriteLine("  - Schema ok!");
             }
 
             _hasModelChecked = true;
-            return swatterContext;
+            return context;
+        }
+    }
+
+    public class RecreateSwatterDatabaseInitializer : DropCreateDatabaseIfModelChanges<SwatterContext>
+    {
+        protected override void Seed(SwatterContext context)
+        {
+            context.Pots.AddRange(new[]
+            {
+                new Pot
+                {
+                    Abbreviation = "HY",
+                    Name = "The honey pot",
+                    Description = @"The sweetest spot!
+Where everything happens :-)",
+                    Chief = "blowfly@honey.pot"
+                },
+                new Pot
+                {
+                    Abbreviation = "CU",
+                    Name = "Cucumber pot",
+                    Description = @"Terrible sour! You don't be here unless you have to.",
+                    Chief = "mayfly@cucumber.pot"
+                }
+            });
+
+            // Will call SaveChanges() for us.
+            base.Seed(context);
         }
     }
 }
