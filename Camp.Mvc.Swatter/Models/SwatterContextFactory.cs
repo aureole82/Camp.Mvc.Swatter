@@ -102,6 +102,27 @@ Could it be he doesn't like me?",
 Drives me nuts",
                             Creator = "wacky@honey.pot",
                             Weight = Weight.Trivial
+                        },
+                        new Fly
+                        {
+                            Head = "When I walk the ceiling",
+                            Body = @"...all is top down",
+                            Creator = "crazy@honey.pot"
+                        },
+                        new Fly
+                        {
+                            Head = "Slapping hurts my feeling",
+                            Creator = "whimpy@honey.pot"
+                        },
+                        new Fly
+                        {
+                            Head = "When the sun shines can't smashing against windows",
+                            Creator = "dizzy@honey.pot"
+                        },
+                        new Fly
+                        {
+                            Head = "I'm a fly and cannot write, so what?",
+                            Creator = "coury@honey.pot"
                         }
                     }
                 },
@@ -117,6 +138,12 @@ Drives me nuts",
                         {
                             Head = "So sour",
                             Body = @"So sour, so boring. Why should I am waiting here?",
+                            Creator = "mayfly@cucumber.pot"
+                        },
+                        new Fly
+                        {
+                            Head = "So llomy",
+                            Body = @"Nobody's there. Did I miss the invitiation of a pig party?",
                             Creator = "mayfly@cucumber.pot"
                         }
                     }

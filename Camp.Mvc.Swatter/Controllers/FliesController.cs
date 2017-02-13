@@ -17,26 +17,26 @@ namespace Camp.Mvc.Swatter.Controllers
         // GET: Flies
         public ActionResult Index()
         {
-            var flies = GetListAggregates();
-
-            return View(flies);
+            return View();
         }
 
         // Prevent /Flies/IndexByProject/1 access by user.
         [ChildActionOnly]
-        public ActionResult IndexByProject(int id)
+        public ActionResult IndexByProject(int? id = null, string query = null)
         {
-            var fliesOfProject = GetListAggregates(id);
+            var fliesOfProject = GetListAggregates(id, query);
 
             return PartialView("_FlyList", fliesOfProject);
         }
 
-        private IEnumerable<FlyListAggregate> GetListAggregates(int? id=null)
+        private IEnumerable<FlyListAggregate> GetListAggregates(int? id = null, string query = null)
         {
+            ViewBag.Query = query;
             var flies = (
                     from fly in _db.Flies
                     join pot in _db.Pots on fly.PotId equals pot.Id
                     where !id.HasValue || fly.PotId == id
+                    where query == null || fly.Head.Contains(query)
                     select new {fly, pot.Abbreviation}
                 )
                 .ToList()

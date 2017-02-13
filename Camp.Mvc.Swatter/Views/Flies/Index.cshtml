@@ -1,9 +1,7 @@
-﻿@model IEnumerable<Camp.Mvc.Swatter.Aggregates.Flies.FlyListAggregate>
-
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
-@Html.Partial("_FlyList", Model)
+@Html.Action("IndexByProject")
